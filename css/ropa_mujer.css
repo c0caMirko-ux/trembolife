@@ -1,0 +1,55 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Título de sección */
+  .section-title {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Título de categorías (opcional si deseas usarlo) */
+  h3.category-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para la cuadrícula de productos */
+  .product-grid img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .row.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .row.product-grid .col-md-4 {
+    margin-bottom: 30px;
+  }
+  
+  /* Efecto hover en las imágenes de productos */
+  .product-grid img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 1.5rem;
+    }
+  }
