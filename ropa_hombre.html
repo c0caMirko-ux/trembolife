@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ropa Hombre - TremboLife</title>
+  <title>Ropa Mujer - TremboLife</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <style>
     .card-img-top {
@@ -19,10 +19,14 @@
       font-weight: bold;
     }
     .navbar-nav {
-      flex-direction: column;
+      flex-direction: row;
+      margin-left: auto;
     }
     .navbar-brand {
       margin-right: auto;
+    }
+    .navbar-nav .nav-item {
+      margin-right: 15px;
     }
   </style>
 </head>
@@ -37,31 +41,29 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
+          <!-- Elementos a la izquierda -->
           <li class="nav-item">
             <a class="nav-link active" href="index.html">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="ropa_hombre.html">Ropa Hombre</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="suplementos.html">Suplementos</a>
+            <a class="nav-link" href="ropa_mujer.html">Ropa Mujer</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Ropa Hombre -->
+  <!-- Ropa Mujer -->
   <section class="container my-5">
-    <h2 class="section-title text-center">Ropa Hombre</h2>
+    <h2 class="section-title text-center">Ropa Mujer</h2>
     <div class="row">
 
       <!-- Producto 1 -->
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="https://i5.walmartimages.com/asr/9e66d2e8-0286-4825-97bb-4b829150bfb6.17cb61548d337ea41fef6c16a9a702c3.webp?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="card-img-top" alt="Short Hombre">
+          <img src="https://i5.walmartimages.com/asr/9e66d2e8-0286-4825-97bb-4b829150bfb6.17cb61548d337ea41fef6c16a9a702c3.webp?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="card-img-top" alt="Short Mujer">
           <div class="card-body">
-            <h5 class="card-title">Short Hombre</h5>
+            <h5 class="card-title">Short Mujer</h5>
             <p class="card-text">Short cómodo y fresco para el verano.</p>
             <p class="price">Precio: $120</p>
             <p class="disponible">Disponible</p>
@@ -72,9 +74,9 @@
       <!-- Producto 2 -->
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="https://www.kappa.com/cdn/shop/files/UB371P2XW___005_6be312b3-f516-42ed-9a75-473cd2673843.jpg?v=1726355101" class="card-img-top" alt="Short Hombre">
+          <img src="https://www.kappa.com/cdn/shop/files/UB371P2XW___005_6be312b3-f516-42ed-9a75-473cd2673843.jpg?v=1726355101" class="card-img-top" alt="Short Mujer">
           <div class="card-body">
-            <h5 class="card-title">Short Hombre</h5>
+            <h5 class="card-title">Short Mujer</h5>
             <p class="card-text">Short deportivo ideal para entrenamientos.</p>
             <p class="price">Precio: $135</p>
             <p class="agotado">Agotado</p>
@@ -85,9 +87,9 @@
       <!-- Producto 3 -->
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="https://i.pinimg.com/originals/da/93/37/da9337aa6aebdb7c297e4f6f9b8f06c9.png" class="card-img-top" alt="Short Hombre">
+          <img src="https://i.pinimg.com/originals/da/93/37/da9337aa6aebdb7c297e4f6f9b8f06c9.png" class="card-img-top" alt="Short Mujer">
           <div class="card-body">
-            <h5 class="card-title">Short Hombre</h5>
+            <h5 class="card-title">Short Mujer</h5>
             <p class="card-text">Diseño moderno y ajuste perfecto.</p>
             <p class="price">Precio: $110</p>
             <p class="disponible">Disponible</p>
@@ -98,9 +100,9 @@
       <!-- Producto 4 -->
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="https://sparta.cl/media/catalog/product/8/3/833591-010-1_6_1.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=550&width=600&canvas=600:550" class="card-img-top" alt="Polera Hombre">
+          <img src="https://sparta.cl/media/catalog/product/8/3/833591-010-1_6_1.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=550&width=600&canvas=600:550" class="card-img-top" alt="Polera Mujer">
           <div class="card-body">
-            <h5 class="card-title">Polera Hombre</h5>
+            <h5 class="card-title">Polera Mujer</h5>
             <p class="card-text">Polera de algodón para un look casual.</p>
             <p class="price">Precio: $99</p>
             <p class="disponible">Disponible</p>
@@ -111,9 +113,9 @@
       <!-- Producto 5 -->
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/ef341ae0c9874ef0bdfcaed300baa0fe_9366/Polera_de_Entrenamiento_Techfit_Negro_HK2337_01_laydown.jpg" class="card-img-top" alt="Polera Hombre">
+          <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/ef341ae0c9874ef0bdfcaed300baa0fe_9366/Polera_de_Entrenamiento_Techfit_Negro_HK2337_01_laydown.jpg" class="card-img-top" alt="Polera Mujer">
           <div class="card-body">
-            <h5 class="card-title">Polera Hombre</h5>
+            <h5 class="card-title">Polera Mujer</h5>
             <p class="card-text">Polera deportiva para entrenamientos intensos.</p>
             <p class="price">Precio: $105</p>
             <p class="agotado">Agotado</p>
@@ -124,9 +126,9 @@
       <!-- Producto 6 -->
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="https://www.dimarsa.cl/media/catalog/product/m/a/marcasunderarmour1326799-390-verde1jpeg_0.jpg" class="card-img-top" alt="Polera Hombre">
+          <img src="https://www.dimarsa.cl/media/catalog/product/m/a/marcasunderarmour1326799-390-verde1jpeg_0.jpg" class="card-img-top" alt="Polera Mujer">
           <div class="card-body">
-            <h5 class="card-title">Polera Hombre</h5>
+            <h5 class="card-title">Polera Mujer</h5>
             <p class="card-text">Diseño innovador con tecnología de secado rápido.</p>
             <p class="price">Precio: $110</p>
             <p class="disponible">Disponible</p>
