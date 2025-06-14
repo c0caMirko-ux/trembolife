@@ -1,0 +1,79 @@
+/* Fondo de toda la página */
+body {
+  background: #0d47a1;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Contenedor central */
+.auth-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Título */
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #0d47a1;
+}
+
+/* Inputs */
+.auth-container input[type="text"],
+.auth-container input[type="email"],
+.auth-container input[type="password"] {
+  width: 100%;
+  padding: 12px 10px;
+  margin: 8px 0 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Botones */
+.auth-container button {
+  width: 100%;
+  padding: 12px;
+  background: #0d47a1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.auth-container button:hover {
+  background: #1565c0;
+}
+
+/* Texto de links */
+.auth-container a {
+  color: #0d47a1;
+  text-decoration: none;
+}
+
+.auth-container a:hover {
+  text-decoration: underline;
+}
+
+/* Mensajes o alertas */
+.alert {
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.alert-success {
+  background: #c8e6c9;
+  color: #256029;
+}
+
+.alert-danger {
+  background: #ffcdd2;
+  color: #b71c1c;
+}

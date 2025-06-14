@@ -1,0 +1,136 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Carrito de Compras{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
+  <a class="navbar-brand" href="{{ url_for('dashboard') }}">Mi Tienda</a>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('logout') }}">Cerrar Sesión</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <h2>Tu Carrito de Compras</h2>
+  <div id="carrito-vacio" class="alert alert-info" style="display:none;">
+    Tu carrito está vacío.
+  </div>
+
+  <table id="tabla-carrito" class="table table-striped" style="display:none;">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Imagen</th>
+        <th>Precio Unitario</th>
+        <th>Cantidad</th>
+        <th>Subtotal</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tbody-carrito"></tbody>
+    <tfoot>
+      <tr>
+        <th colspan="4" class="text-end">Total:</th>
+        <th id="total-carrito">$0.00</th>
+        <th></th>
+      </tr>
+    </tfoot>
+  </table>
+
+  <button id="btn-finalizar" class="btn btn-success" style="display:none;">Finalizar Compra</button>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const tbody = document.getElementById('tbody-carrito');
+  const tabla = document.getElementById('tabla-carrito');
+  const carritoVacio = document.getElementById('carrito-vacio');
+  const totalCarrito = document.getElementById('total-carrito');
+  const btnFinalizar = document.getElementById('btn-finalizar');
+
+  function formatearMoneda(num) {
+    return '$' + num.toFixed(2);
+  }
+
+  async function cargarCarrito() {
+    const res = await fetch('/api/obtener_carrito');
+    const carrito = await res.json();
+
+    tbody.innerHTML = '';
+    if (carrito.length === 0) {
+      carritoVacio.style.display = 'block';
+      tabla.style.display = 'none';
+      btnFinalizar.style.display = 'none';
+      totalCarrito.textContent = formatearMoneda(0);
+      return;
+    }
+
+    carritoVacio.style.display = 'none';
+    tabla.style.display = 'table';
+    btnFinalizar.style.display = 'inline-block';
+
+    let total = 0;
+    carrito.forEach((item) => {
+      const subtotal = item.precio * item.cantidad;
+      total += subtotal;
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${item.nombre}</td>
+        <td><img src="${item.imagen_url || '/static/default_product.png'}" alt="${item.nombre}" width="60" /></td>
+        <td>${formatearMoneda(item.precio)}</td>
+        <td>${item.cantidad}</td>
+        <td>${formatearMoneda(subtotal)}</td>
+        <td><button class="btn btn-danger btn-sm btn-eliminar" data-id="${item.idproducto}">Eliminar</button></td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    totalCarrito.textContent = formatearMoneda(total);
+  }
+
+  tbody.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('btn-eliminar')) {
+      const idproducto = e.target.dataset.id;
+      const res = await fetch('/api/eliminar_carrito', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({idproducto: parseInt(idproducto)})
+      });
+      const data = await res.json();
+      if (res.ok) {
+        alert(data.mensaje);
+        cargarCarrito();
+      } else {
+        alert(data.error || 'Error al eliminar producto');
+      }
+    }
+  });
+
+  btnFinalizar.addEventListener('click', async () => {
+    if (!confirm('¿Deseas finalizar tu compra?')) return;
+
+    const res = await fetch('/api/finalizar_compra', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'}
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      alert('Compra realizada con éxito! ID Pedido: ' + data.idpedido);
+      cargarCarrito();
+    } else {
+      alert(data.error || 'Error al finalizar la compra');
+    }
+  });
+
+  cargarCarrito();
+});
+</script>
+{% endblock %}

@@ -1,0 +1,138 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}TremboLife - Ropa Mujer{% endblock %}
+
+{% block extra_css %}
+<style>
+  .card-product img {
+    height: 200px;
+    object-fit: cover;
+  }
+  #lista-carrito {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  #lista-carrito li {
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  #carrito {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+  }
+  button.eliminar-btn {
+    margin-left: 10px;
+    border: none;
+    background: transparent;
+    color: red;
+    cursor: pointer;
+    font-weight: bold;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <h1 class="text-center mb-4">Ropa Mujer</h1>
+  <div class="row">
+    <!-- Producto 1 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://images.unsplash.com/photo-1542068829-1115f7259450?auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Top Deportivo Mujer">
+        <div class="card-body text-center">
+          <h5 class="card-title">Top Deportivo Mujer</h5>
+          <p class="card-text">Cómodo y transpirable para tus entrenos.</p>
+          <p class="card-text"><strong>Precio:</strong> Bs. 150</p>
+          <button class="btn btn-primary" onclick="agregarAlCarrito('Top Deportivo Mujer', 150)">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+    <!-- Producto 2 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://images.unsplash.com/photo-1520975691793-8b07db345b42?auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Leggings">
+        <div class="card-body text-center">
+          <h5 class="card-title">Leggings</h5>
+          <p class="card-text">Flexibles y resistentes para cualquier actividad.</p>
+          <p class="card-text"><strong>Precio:</strong> Bs. 250</p>
+          <button class="btn btn-primary" onclick="agregarAlCarrito('Leggings', 250)">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+    <!-- Producto 3 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Sudadera Deportiva">
+        <div class="card-body text-center">
+          <h5 class="card-title">Sudadera Deportiva</h5>
+          <p class="card-text">Ideal para entrenamiento y días frescos.</p>
+          <p class="card-text"><strong>Precio:</strong> Bs. 300</p>
+          <button class="btn btn-primary" onclick="agregarAlCarrito('Sudadera Deportiva', 300)">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+    <!-- Producto 4 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Pantalones Cortos">
+        <div class="card-body text-center">
+          <h5 class="card-title">Pantalones Cortos</h5>
+          <p class="card-text">Ligero y cómodo para correr y ejercitar.</p>
+          <p class="card-text"><strong>Precio:</strong> Bs. 180</p>
+          <button class="btn btn-primary" onclick="agregarAlCarrito('Pantalones Cortos', 180)">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carrito de compras -->
+  <div id="carrito">
+  <h5>🛒 Carrito</h5>
+  <ul id="lista-carrito"></ul>
+  <p><strong>Total: </strong>Bs. <span id="total">0.00</span></p>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  let carrito = [];
+  let total = 0;
+
+  function agregarAlCarrito(nombre, precio) {
+    carrito.push({ producto: nombre, precio: precio });
+    total += precio;
+    actualizarCarrito();
+  }
+
+  function actualizarCarrito() {
+    let lista = document.getElementById('lista-carrito');
+    lista.innerHTML = '';
+    carrito.forEach((item, index) => {
+      let li = document.createElement('li');
+      li.textContent = `${item.producto} - Bs. ${item.precio}`;
+
+      // Botón para eliminar
+      let btnEliminar = document.createElement('button');
+      btnEliminar.textContent = '❌';
+      btnEliminar.className = 'eliminar-btn';
+      btnEliminar.onclick = () => {
+        eliminarDelCarrito(index);
+      };
+
+      li.appendChild(btnEliminar);
+      lista.appendChild(li);
+    });
+    document.getElementById('total').textContent = total.toFixed(2);
+  }
+
+  function eliminarDelCarrito(index) {
+    total -= carrito[index].precio;
+    carrito.splice(index, 1);
+    actualizarCarrito();
+  }
+</script>
+{% endblock %}

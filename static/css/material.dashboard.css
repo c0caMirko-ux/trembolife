@@ -1,0 +1,122 @@
+/* Fondo general para la vista de auth */
+body.auth-body {
+    background-color: #1C1C1C;
+    background-image: url("../img/gym-background.jpg"); /* Cambia según tu ruta */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    min-height: 100vh;
+}
+
+/* Card contenedor de login/registro */
+.auth-card {
+    background-color: rgba(28, 28, 28, 0.92);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+    max-width: 450px;
+    margin: 3rem auto;
+}
+
+/* Títulos */
+.auth-card h3 {
+    color: #FFFFFF;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Nav tabs */
+#authTab {
+    border-bottom: 2px solid #007BFF;
+    margin-bottom: 1.5rem;
+}
+
+#authTab .nav-link {
+    color: #f8f9fa;
+    font-weight: 600;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+#authTab .nav-link.active {
+    color: #ffffff;
+    background-color: #007BFF;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+/* Campos de formulario */
+.auth-card .form-control {
+    background-color: #FFFFFF;
+    color: #000;
+    border: 1px solid #ced4da;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.auth-card .form-control:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Botones */
+.auth-card .btn-primary {
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.2rem;
+}
+
+.auth-card .btn-primary:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+/* Links */
+.auth-card a {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+.auth-card a:hover {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+/* Alertas flash */
+.alert {
+    border-radius: 0.5rem;
+    font-weight: 600;
+}
+
+.alert-danger {
+    background-color: #4B0000;
+    color: #FFFFFF;
+    border: 1px solid #FF6B6B;
+}
+
+.alert-success {
+    background-color: #004d00;
+    color: #FFFFFF;
+    border: 1px solid #90EE90;
+}
+
+/* Animaciones de entrada */
+.animate__fadeInUp {
+    animation-duration: 0.8s;
+    animation-fill-mode: both;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .auth-card {
+        padding: 1.5rem;
+        margin: 1.5rem;
+    }
+}

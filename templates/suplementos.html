@@ -1,0 +1,131 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}TremboLife - Suplementos{% endblock %}
+
+{% block extra_css %}
+<style>
+  .card-product img {
+    height: 200px;
+    object-fit: cover;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <h1 class="text-white mb-4">Suplementos</h1>
+
+  <div class="row">
+    <!-- Producto 1 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiZsaubymE_-3bGZ6kA8RG1pSqYwUmEE_7Nw&s" class="card-img-top" alt="Proteína Whey">
+        <div class="card-body text-center">
+          <h5 class="card-title">Proteína Whey</h5>
+          <p class="card-text">Proteína de suero de alta calidad, 2kg.</p>
+          <button class="btn btn-success">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://i.pinimg.com/originals/99/c9/1f/99c91f6d52cc7e5d5810d5f57bfe7f7f.jpg" class="card-img-top" alt="Creatina Monohidratada">
+        <div class="card-body text-center">
+          <h5 class="card-title">Creatina Monohidratada</h5>
+          <p class="card-text">Aumenta fuerza y resistencia, 500g.</p>
+          <button class="btn btn-success">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto 3 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://m.media-amazon.com/images/I/61E2jW5W5dL._AC_UF894,1000_QL80_.jpg" class="card-img-top" alt="Pre-entreno NitroX">
+        <div class="card-body text-center">
+          <h5 class="card-title">Pre-entreno NitroX</h5>
+          <p class="card-text">Energía explosiva para tu entrenamiento.</p>
+          <button class="btn btn-success">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto 4 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8TbfONCBY0EovhgiRviIQIq3ZCHXXIQx6jA&usqp=CAU" class="card-img-top" alt="Aminoácidos BCAA">
+        <div class="card-body text-center">
+          <h5 class="card-title">Aminoácidos BCAA</h5>
+          <p class="card-text">Recuperación muscular rápida, 300g.</p>
+          <button class="btn btn-success">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="carrito">
+  <h5>🛒 Carrito</h5>
+  <ul id="lista-carrito"></ul>
+  <p><strong>Total: </strong>Bs. <span id="total">0.00</span></p>
+</div>
+
+{% endblock %}
+{% block extra_js %}
+<script>
+  let carrito = [];
+  let total = 0;
+
+  function agregarAlCarrito(producto, precio) {
+    carrito.push({ producto, precio });
+    total += precio;
+    actualizarCarrito();
+  }
+
+  function actualizarCarrito() {
+    let lista = document.getElementById('lista-carrito');
+    lista.innerHTML = '';
+    carrito.forEach(item => {
+      let li = document.createElement('li');
+      li.textContent = `${item.producto} - Bs. ${item.precio}`;
+      lista.appendChild(li);
+    });
+    document.getElementById('total').textContent = total;
+  }
+function actualizarCarrito() {
+  let lista = document.getElementById('lista-carrito');
+  lista.innerHTML = '';
+  carrito.forEach((item, index) => {
+    let li = document.createElement('li');
+    li.textContent = `${item.producto} - Bs. ${item.precio}`;
+
+    // Botón para eliminar
+    let btnEliminar = document.createElement('button');
+    btnEliminar.textContent = '❌';
+    btnEliminar.style.marginLeft = '10px';
+    btnEliminar.style.border = 'none';
+    btnEliminar.style.background = 'transparent';
+    btnEliminar.style.color = 'red';
+    btnEliminar.style.cursor = 'pointer';
+    btnEliminar.onclick = () => {
+      eliminarDelCarrito(index);
+    };
+
+    li.appendChild(btnEliminar);
+    lista.appendChild(li);
+  });
+  document.getElementById('total').textContent = total.toFixed(2);
+}
+
+function eliminarDelCarrito(index) {
+  // Reducir total
+  total -= carrito[index].precio;
+  // Quitar item
+  carrito.splice(index, 1);
+  actualizarCarrito();
+}
+
+</script>
+{% endblock %}

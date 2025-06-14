@@ -1,0 +1,156 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}TremboLife - Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<style>
+  .carousel-item img {
+    height: 85vh;
+    object-fit: cover;
+  }
+  .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+  .card-product img {
+    height: 200px;
+    object-fit: cover;
+  }
+  footer {
+    background-color: #212529;
+    color: white;
+    padding: 2rem 0;
+  }
+  .social-icons a {
+    font-size: 1.5rem;
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Menú superior tipo Gymshark -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="{{ url_for('dashboard') }}">TremboLife</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('ropa_hombre') }}">Ropa Hombre</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('ropa_mujer') }}">Ropa Mujer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('suplementos') }}">Suplementos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('accesorios') }}">Accesorios</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('carrito') }}">Carrito</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-success text-white ms-3 px-3" href="{{ url_for('logout') }}">Cerrar Sesión</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Espaciado para que no tape el carrusel -->
+<div style="margin-top: 70px;"></div>
+
+<!-- Carrusel principal -->
+<div id="carouselTrembo" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://media.istockphoto.com/id/2027278927/es/foto/joven-mujer-atl%C3%A9tica-haciendo-ejercicio-con-barra-durante-el-entrenamiento-deportivo-en-un.jpg?s=612x612&w=0&k=20&c=r9pa57g6zvU-keyNhqtZ7dBoWubAmXfMNn1VnXrZWhk=" class="d-block w-100" alt="Ropa deportiva">
+      <div class="carousel-caption d-none d-md-block">
+        <h2>Ropa Deportiva</h2>
+        <p>Estilo y rendimiento para cada entrenamiento.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.pinimg.com/736x/f3/93/26/f3932687292acfe675ef0ce212f301ac.jpg" class="d-block w-100" alt="Accesorios fitness">
+      <div class="carousel-caption d-none d-md-block">
+        <h2>Accesorios Fitness</h2>
+        <p>Todo lo que necesitas para llevar tu rutina al siguiente nivel.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiZsaubymE_-3bGZ6kA8RG1pSqYwUmEE_7Nw&s" class="d-block w-100" alt="Suplementos">
+      <div class="carousel-caption d-none d-md-block">
+        <h2>Suplementos de Calidad</h2>
+        <p>Potencia tus resultados con productos certificados.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselTrembo" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselTrembo" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<!-- Lo más vendido -->
+<section class="container my-5">
+  <h2 class="text-center mb-4 text-white">🔥 Lo Más Vendido</h2>
+  <div class="row">
+    <!-- Producto 1 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://m.media-amazon.com/images/I/61E2jW5W5dL._AC_UF894,1000_QL80_.jpg" class="card-img-top" alt="Proteína Elite">
+        <div class="card-body text-center">
+          <h5 class="card-title">Proteína Elite</h5>
+          <p class="card-text">Suplemento de alto rendimiento. 1.5kg</p>
+          <button class="btn btn-success">Ver detalle</button>
+        </div>
+      </div>
+    </div>
+    <!-- Producto 2 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://www.dominion.es/blog/wp-content/uploads/2021/12/accesorios-fitness-para-casa.jpg" class="card-img-top" alt="Kit Fitness">
+        <div class="card-body text-center">
+          <h5 class="card-title">Kit Fitness</h5>
+          <p class="card-text">Set completo de accesorios para entrenamiento.</p>
+          <button class="btn btn-success">Ver detalle</button>
+        </div>
+      </div>
+    </div>
+    <!-- Producto 3 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://i.pinimg.com/originals/99/c9/1f/99c91f6d52cc7e5d5810d5f57bfe7f7f.jpg" class="card-img-top" alt="Camiseta Dry-Fit">
+        <div class="card-body text-center">
+          <h5 class="card-title">Camiseta Dry-Fit</h5>
+          <p class="card-text">Ropa deportiva premium para alto rendimiento.</p>
+          <button class="btn btn-success">Ver detalle</button>
+        </div>
+      </div>
+    </div>
+    <!-- Producto 4 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8TbfONCBY0EovhgiRviIQIq3ZCHXXIQx6jA&usqp=CAU" class="card-img-top" alt="Pre-entreno NitroX">
+        <div class="card-body text-center">
+          <h5 class="card-title">Pre-entreno NitroX</h5>
+          <p class="card-text">Energía explosiva antes de cada sesión.</p>
+          <button class="btn btn-success">Ver detalle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

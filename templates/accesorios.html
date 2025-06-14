@@ -1,0 +1,114 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}TremboLife - Accesorios{% endblock %}
+
+{% block extra_css %}
+<style>
+  .card-product img {
+    height: 200px;
+    object-fit: cover;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <h1 class="text-white mb-4">Accesorios</h1>
+
+  <div class="row">
+    <!-- Producto 1 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://www.dominion.es/blog/wp-content/uploads/2021/12/accesorios-fitness-para-casa.jpg" class="card-img-top" alt="Kit Fitness">
+        <div class="card-body text-center">
+          <h5 class="card-title">Kit Fitness</h5>
+          <p class="card-text">Set completo de accesorios para entrenamiento.</p>
+          <button class="btn btn-success btn-agregar" data-nombre="Kit Fitness">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/61qUO2VzZWL._AC_SL1500_.jpg" class="card-img-top" alt="Guantes de Entrenamiento">
+        <div class="card-body text-center">
+          <h5 class="card-title">Guantes de Entrenamiento</h5>
+          <p class="card-text">Protección y comodidad para tus manos.</p>
+          <button class="btn btn-success btn-agregar" data-nombre="Guantes de Entrenamiento">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto 3 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://cdn.shopify.com/s/files/1/0266/6274/7017/products/powerlifting-belt-black-1_800x.jpg" class="card-img-top" alt="Cinturón de Levantamiento">
+        <div class="card-body text-center">
+          <h5 class="card-title">Cinturón de Levantamiento</h5>
+          <p class="card-text">Soporte lumbar para entrenamientos pesados.</p>
+          <button class="btn btn-success btn-agregar" data-nombre="Cinturón de Levantamiento">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto 4 -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card card-product">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/71Ay9n66meL._AC_SL1500_.jpg" class="card-img-top" alt="Botella Deportiva">
+        <div class="card-body text-center">
+          <h5 class="card-title">Botella Deportiva</h5>
+          <p class="card-text">Mantente hidratado durante tus rutinas.</p>
+          <button class="btn btn-success btn-agregar" data-nombre="Botella Deportiva">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="carrito">
+  <h5>🛒 Carrito</h5>
+  <ul id="lista-carrito"></ul>
+  <p><strong>Total: </strong>Bs. <span id="total">0.00</span></p>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  $(document).ready(function() {
+    $('.btn-agregar').click(function() {
+      const nombreProducto = $(this).data('nombre');
+      alert(`Producto "${nombreProducto}" agregado al carrito.`);
+      // Aquí puedes añadir la lógica para enviar la info al backend o guardar localmente.
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('.btn-agregar').click(function() {
+      const nombreProducto = $(this).data('nombre');
+      
+      fetch('/api/agregar_carrito', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ producto: nombreProducto })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if(data.error){
+          alert("Error: " + data.error);
+        } else {
+          alert(data.mensaje);
+          // Aquí puedes actualizar contador carrito o lo que quieras en la UI
+        }
+      })
+      .catch(err => alert('Error al agregar al carrito'));
+    });
+  });
+</script>
+
+{% endblock %}
